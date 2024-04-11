@@ -33,7 +33,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 - **Project Link**: [https://github.com/yourusername/PythonProjectsHub](https://github.com/yourusername/PythonProjectsHub)
 - **WebSite**:[Wajoud H Noorani](https://wajoudnoorani.com/)
-- **LinkedIn**: [Your LinkedIn](www.linkedin.com/in/wajoud-noorani-7b6054118)
+- **LinkedIn**: [Wajoud H Noorani](www.linkedin.com/in/wajoud-noorani-7b6054118)
 
 Join me at **PythonProjectsHub** and start building something amazing today!
 
