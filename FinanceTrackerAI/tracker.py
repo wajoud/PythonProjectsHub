@@ -12,11 +12,11 @@ class Application(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        # configure window
+        # Configure window
         self.title("Finance Tracker")
-        self.geometry(f"{800}x{500}")
+        self.geometry("800x500")
 
-        # configure grid layout
+        # Configure grid layout
         self.grid_columnconfigure(1, weight=5)
         self.grid_rowconfigure(0, weight=5)
 
@@ -25,16 +25,16 @@ class Application(ctk.CTk):
         self.income_transactions = [] 
         self.expense_transactions = []
 
-        # create main frame
+        # Create main frame
         self.main_frame = ctk.CTkFrame(self, corner_radius=0)
         self.main_frame.grid(row=0, column=1, sticky="nsew", padx=20, pady=20)
 
-        # create sidebar frame with widgets
+        # Create sidebar frame with widgets
         self.sidebar_frame = ctk.CTkFrame(self, width=250, corner_radius=0)
         self.sidebar_frame.grid(row=0, column=0, sticky="nsew", padx=20, pady=20)
 
         self.logo_label = ctk.CTkLabel(self.sidebar_frame, text="Finance Tracker", 
-                                                 font=ctk.CTkFont(size=30, weight="bold"))
+                                       font=ctk.CTkFont(size=30, weight="bold"))
         self.logo_label.grid(row=0, column=0, padx=20, pady=(20, 10))
 
         # Adding navigation buttons
@@ -45,17 +45,17 @@ class Application(ctk.CTk):
         self.balance_button = ctk.CTkButton(self.sidebar_frame, text="Balance", command=self.balance_button_event)
         self.balance_button.grid(row=3, column=0, padx=20, pady=20)
 
-        # Create Entry fields(User can type the text)
+        # Create frames for different sections
         self.income_frame, self.income_tree = self.create_transaction_frame("Income", self.add_income, row=1, transactions=self.income_transactions)
         self.expense_frame, self.expense_tree = self.create_transaction_frame("Expense", self.add_expense, row=2, transactions=self.expense_transactions)
         self.balance_frame = self.create_balance_frame(row=3)
 
         self.hide_frames()
-        self.income_frame.grid()
+        self.income_frame.grid()  # Initially show the income frame
 
-        # Plot
-        self.fig = Figure(figsize = (4, 4), dpi = 100) 
-        self.canvas = FigureCanvasTkAgg(self.fig, master = self.balance_frame)
+        # Initialize plot
+        self.fig = Figure(figsize=(4, 4), dpi=100)
+        self.canvas = FigureCanvasTkAgg(self.fig, master=self.balance_frame)
         self.canvas.get_tk_widget().grid(row=1, column=0)
 
     def create_transaction_frame(self, title, button_command, row, transactions):
@@ -74,22 +74,21 @@ class Application(ctk.CTk):
         
         # Add a transactions table
         tree = ttk.Treeview(frame)
-        tree["columns"]=("Category","Amount")
+        tree["columns"]=("Category", "Amount")
         tree.column("#0", width=0, stretch="NO")
         tree.column("Category", anchor="w", width=120)
         tree.column("Amount", anchor="w", width=120)
-        tree.heading("Category", text="Category",anchor='w')
-        tree.heading("Amount", text="Amount",anchor='w')
-        tree.grid(row=4, column=0, padx=20, pady=50)
+        tree.heading("Category", text="Category", anchor='w')
+        tree.heading("Amount", text="Amount", anchor='w')
+        tree.grid(row=4, column=0, columnspan=2, padx=20, pady=50)
         
         return frame, tree
 
     def create_balance_frame(self, row):
         frame = ctk.CTkFrame(self.main_frame)
-        # create and add your balance widgets here
+        # Add balance widgets here
         return frame
 
-    #Clear the current view of the app
     def hide_frames(self):
         for frame in [self.income_frame, self.expense_frame, self.balance_frame]:
             frame.grid_remove()
@@ -148,7 +147,6 @@ class Application(ctk.CTk):
             tree.delete(i)
         for transaction in transactions:
             tree.insert('', 'end', values=transaction)
-
 
 if __name__ == "__main__":
     app = Application()

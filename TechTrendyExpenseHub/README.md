@@ -14,8 +14,6 @@ Clone the repository to get started:
 git clone https://github.com/yourusername/TechTrendyExpenseHub.git
 ```
 
-````
-
 ## How It Works 🖥
 
 Run the application locally:
@@ -49,4 +47,3 @@ Project Link: [PythonProjectsHub](https://github.com/wajoud/PythonProjectsHub)
 ---
 
 <p align="center">Let's make budgeting and expense tracking an absolute breeze. 🌬️</p>
-````
